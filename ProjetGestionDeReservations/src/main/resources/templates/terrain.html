@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+            <title>gestion de reservation</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+                  integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"/>
+    </head>
+    <script>
+        function confirmDelete() {
+            return confirm("Êtes-vous sûr de vouloir supprimer le terrain ?");
+        }
+    </script>
+    <body>
+        <div class="container">
+            <hr/>
+            <h1>Liste des terrain</h1>
+            <hr/>
+            <table class="table table-striped text-center">
+                <thead>
+                    <tr>
+                        <th>Id_terrain</th>
+                        <th>num_terrain</th>
+                        <th>numbre de reservation</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="terrain , num : ${listTerrains}">
+                        <td th:text="${terrain.getId()}"></td>
+                        <td th:text="${terrain.getNumTerrain()}"></td>
+                        <td th:text="${terrain.getReservations().size()}"></td>
+                        <td><span>
+                                <a class="btn btn-info"
+                                   th:href="@{/showUpdateTerrainPage(id=${terrain.getId()})}">modifier</a></span>
+                            <span th:if="${terrain.getReservations().size() == 0}">
+                                <a class="btn btn-danger" th:href="@{/deleteTerrain(id=${terrain.getId()})}"
+                                   onclick="return confirmDelete()">supprimer</a></span>
+                            <span th:unless="${terrain.getReservations().size() == 0}"
+                                  title="impossible, supprimez d'abord les reservations liés à ce terrain">
+                                <a th:href="@{/deleteTerrain(id=${terrain.getId()})}"  onclick="return confirmDelete()" class="btn btn-danger disabled">supprimer</a></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <a th:href="@{showAddTerrainPage}" class="btn btn-primary">ajouter un membre</a>
+            <a th:href="@{/accueil}" class="btn btn-danger"> retourner</a>
+        </div>
+    </body>
+</html>
