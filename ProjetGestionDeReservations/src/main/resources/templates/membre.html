@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+            <title>gestion de reservation</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+                  integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"/>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.17.0/font/bootstrap-icons.css">
+                </head>
+                <body>
+                    <div class="container my-4">
+                        <h1 class="mb-4">Liste des membres</h1>
+                        <hr/>
+                        <a th:href="@{showAddMembrePage}" class="btn btn-primary mb-2"> Ajouter un membre</a>
+                        <hr/>
+                        <table class="table table-striped text-center">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                    <th>Date de naissance</th>
+                                    <th>En Ordre de paiement</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="membre : ${listMembres}">
+                                    <td th:text="${membre.getNom()}"></td>
+                                    <td th:text="${membre.getPrenom()}"></td>
+                                    <td th:text="${#temporals.format(membre.getDateNaiss(),'dd/MM/yyyy')}"></td>
+                                    <td>
+                                        <span th:if="${membre.enOrdre}" class="badge bg-success">En ordre</span>
+                                        <span th:unless="${membre.enOrdre}" class="badge bg-danger">Non en ordre</span>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info" th:href="@{/showUpdateMembrePage(id=${membre.getId()})}">Modifier</a>
+                                        <a class="btn btn-danger" th:href="@{/showDeleteMembrePage(id=${membre.getId()})}">Supprimer</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="d-flex justify-content-between">
+                            <a th:href="@{/accueil}" class="btn btn-danger my-2">Retourner </a>
+                        </div>
+                    </div>
+                </body>
+                </html>

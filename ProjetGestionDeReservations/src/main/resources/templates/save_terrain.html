@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>gestion de reservation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"/>
+</head>
+<body>
+<div class="container ">
+    <div class="main">
+        <h1 class="">Système de Réservation Tennis</h1>
+        <hr/>
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Nouveau Terrain</h2>
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-6">
+                    <form th:action="@{saveTerrain}" th:object="${terrain}" class="row" method="post">
+                        <div class="container">
+                            <div class="row bg-light gy-3 my-4">
+                                <div class="col-12">
+                                    <label for="inputNum" class="form-label">Numéro de terrain </label>
+                                    <input type="number" name="nameNum" th:field="*{numTerrain}" id="inputNum"
+                                           class="form-control">
+                                    <span th:errors="*{numTerrain}" class="text-danger"></span>
+                                </div>
+                                <div class="col-12 my-4">
+                                    <button type="submit" class="btn btn-primary col-12 col-sm-4 col-lg-2">Enregistrer
+                                    </button>
+                                    <a th:href="@{/terrainPage}"
+                                       class="btn btn-danger col-12 col-sm-4 col-lg-2 mx-sm-2">Annuler
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

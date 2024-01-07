@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>gestion de reservation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"/>
+
+</head>
+<body>
+<div class="container ">
+    <div class="main">
+        <h1 class="">Système de Réservation Tennis</h1>
+        <hr/>
+        <h2> Nouveau Membre</h2>
+        <div>
+            <form th:action="@{saveMembre}" th:object="${membre}" class="row" method="post">
+                <div class="container">
+                    <div class="row bg-light gy-3 my-4">
+                        <div class="col-12 col-lg-6">
+                            <label for="inputName" class="form-label">nom</label>
+                            <input type="text" name="nameInput" th:field="*{nom}" id="inputName" class="form-control">
+                            <span th:errors="*{nom}" class="text-danger"></span>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <label for="inputPrenom" class="form-label">prénom</label>
+                            <input type="text" name="inputPrenom" th:field="*{prenom}" id="inputPrenom"
+                                   class="form-control">
+                            <span class="text-danger"  th:errors="*{prenom}"></span>
+                        </div>
+                        <div class=" col-12 col-lg-6 ">
+                            <label for="dateInput" class="form-label">date de naissance</label>
+                            <input type="date" name="dateInput" th:field="*{dateNaiss}" id="dateInput"
+                                   class="form-control">
+                            <span th:errors="*{dateNaiss}" class="text-danger"></span>
+                        </div>
+                        <div class="col-12 col-lg-6 fs-5 mt-5">
+                            <span class="me-5">En ordre de paiement</span>
+                            <input type="radio" class="form-check-input " name="inputEnOrdre" th:field="*{enOrdre}"
+                                   id="inputEnOrdreOui" value="true">
+                            <label for="inputEnOrdreOui" class="form-check-label me-5">Oui</label>
+                            <input type="radio" class="form-check-input" name="inputEnOrdre" th:field="*{enOrdre}"
+                                   id="inputEnOrdreNon" value="false">
+                            <label for="inputEnOrdreNon" class="form-check-label">Non</label><br>
+                            <span th:errors="*{enOrdre}" class="text-danger"></span>
+                        </div>
+                        <div class="col-12 my-4">
+                            <button type="submit" class="btn btn-primary col-12 col-sm-4 col-lg-2 ">enregistrer
+                            </button>
+                            <a th:href="@{/membrePage}" class="btn btn-danger col-12 col-sm-4 col-lg-2 mx-sm-2">annuler
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+
+
+
+DICTIONNAIRE DES DONNEES
+
+
+
+
+Classe Membre :
+
+-	id : Integer (numéro auto-incrémenté)
+-	nom : String
+-	prenom : String
+-	dateNaiss : Date (java.util.Date)
+-	enOrdre : Boolean (stipule s’il est en ordre de paiement)
+
+Classe Terrain :
+
+-	id : Integer (numéro auto-incrémenté)
+-	numTerrain : Integer // ajouter une contrainte d’unicité sur le numTerrain
+
+
+Classe Reservation :
+
+-	id : Integer (numéro auto-incrémenté)
+-	date : Date (java.util.Date)
+-	heureDeb : LocalTime (java.time.LocalTime)
+-	heureFin : LocalTime (java.time.LocalTime)
+
+
+
+
+
+
+
+PROJET
+
+
+Faire un petit projet du même type que le projet Employee.
+
+Fonctionnalités à prévoir :
+
+•	CRUD des 3 tables. OK
+
+•	Dans la liste des réservations, il faut afficher aussi le id-nom-prénom du membre et le numéro du terrain. OK
+
+•	Pour ajouter une nouvelle réservation, il faut pouvoir choisir le id-nom-prénom du membre et le numéro du terrain via des combobox. OK
+
+•	Toujours dans l’ajout d’une réservation, il faut limiter le choix des heures de la façon suivante :
+o	L’heure de début est d’office une heure ronde comprise entre 9 et 20. OK
+o	Plutôt que de demander l’heure de fin, demander la durée de la réservation, où on ne pourra choisir que 1h ou 2h. OK
+
+•	Pouvoir filtrer les réservations sur le numéro du terrain et sur la date de réservation. OK
+
+•	Vérifier bien la validité des données entrées par l'utilisateur (uniquement des lettres pour les champs alphabétiques, uniquement des chiffres pour les champs numériques, dates valides...). OK
+
+•	Pour la suppression d’un membre ou d’un terrain, demander d’abord une confirmation (fonction confirm en javascript). Un membre/terrain ne peut être supprimé que s’il n’est lié à aucune réservation (sinon message d’erreur). OK
+
+•	Règle de gestion à implémenter : 
+
+o	Il faut interdire de faire 2 réservations du même terrain qui se chevauchent.
+o	Il faut interdire qu’un membre qui n’est pas en ordre de paiement puisse faire une réservation. OK
+
+
+
+
+NB : Pour définir un type Enum : https://www.youtube.com/watch?v=kAYjrhcrx_8 
+
+
+1- mise en page Modeifer_membre , ajout Reservation
+2- ajoute filtre page membre et terrain
+3- vérification modifier reservation

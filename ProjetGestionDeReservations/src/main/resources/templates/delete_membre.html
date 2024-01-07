@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>gestion des réservations</title>
+    <script>
+        function confir() {
+            var confirmation = confirm("Êtes-vous sûr de supprimer le membre avec l'id suivant :" +[[${membre.getId()}]] + "\nAttention!!! ");
+            if (confirmation) {
+                let form = document.createElement("form");
+                form.method='POST';
+                form.action= "[[@{/deleteMembre(id=${membre.getId()})}]]";
+                document.body.appendChild(form);
+                form.submit();
+            } else {
+                window.history.back();
+            }
+        }
+        window.onload = confir;
+    </script>
+</head>
+<body>
+</body>
+</html>
